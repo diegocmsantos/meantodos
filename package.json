@@ -1,0 +1,25 @@
+{
+  "name": "meantodos",
+  "version": "1.0.0",
+  "description": "todo app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegocmsantos/meantodos.git"
+  },
+  "author": "Diego Maia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diegocmsantos/meantodos/issues"
+  },
+  "homepage": "https://github.com/diegocmsantos/meantodos#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "mongojs": "^2.4.0"
+  }
+}
