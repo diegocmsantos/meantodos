@@ -9,17 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var todo_service_1 = require('../services/todo.service');
 var TodosComponent = (function () {
-    function TodosComponent() {
-        this.name = 'Angular';
+    function TodosComponent(_todoService) {
+        this._todoService = _todoService;
     }
+    TodosComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.todos = [];
+        this._todoService.getTodos()
+            .subscribe(function (todos) { return _this.todos = todos; });
+    };
     TodosComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'todos',
-            templateUrl: 'todos.component.html',
+            templateUrl: 'todos.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [todo_service_1.TodoService])
     ], TodosComponent);
     return TodosComponent;
 }());

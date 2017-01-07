@@ -9,21 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var todo_service_1 = require('./services/todo.service');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.name = 'Angular';
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/map');
+var TodoService = (function () {
+    function TodoService(_http) {
+        this._http = _http;
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'my-app',
-            templateUrl: 'app.component.html',
-            providers: [todo_service_1.TodoService]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    TodoService.prototype.getTodos = function () {
+        return this._http.get('/api/v1/todos').map(function (res) { return res.json(); });
+    };
+    TodoService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], TodoService);
+    return TodoService;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.TodoService = TodoService;
+//# sourceMappingURL=todo.service.js.map
