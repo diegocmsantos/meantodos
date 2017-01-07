@@ -18,7 +18,7 @@ export class TodosComponent implements OnInit {
     this.todos = [];
     this._todoService.getTodos()
       .subscribe(todos => this.todos = todos);
-      
+
   }
 
   addTodo(event, todoText) {
@@ -73,6 +73,17 @@ export class TodosComponent implements OnInit {
       this._todoService.updateTodo(_todo)
         .subscribe(data => this.setEditState(todo, false));
     }
+  }
+
+  deleteTodo(todo) {
+
+    const todos = this.todos;
+
+    this._todoService.deleteTodo(todo._id)
+      .subscribe(() => {
+        this.todos = todos.filter(item => item._id !== todo._id);
+      });
+
   }
 
 }

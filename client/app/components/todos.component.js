@@ -63,6 +63,14 @@ var TodosComponent = (function () {
                 .subscribe(function (data) { return _this.setEditState(todo, false); });
         }
     };
+    TodosComponent.prototype.deleteTodo = function (todo) {
+        var _this = this;
+        var todos = this.todos;
+        this._todoService.deleteTodo(todo._id)
+            .subscribe(function () {
+            _this.todos = todos.filter(function (item) { return item._id !== todo._id; });
+        });
+    };
     TodosComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

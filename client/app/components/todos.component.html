@@ -28,7 +28,10 @@
     </div>
 
     <div class="col-md-4 btns">
-      <input type="button" class="btn btn-danger pull-right" value="Delete">
+      <input type="button" 
+        class="btn btn-danger pull-right" 
+        value="Delete"
+        (click)="deleteTodo(todo)">
       <input [class.disable]="todo.isCompleted || todo.isCompleted !== undefined" 
         (click)="setEditState(todo, true)" 
         type="button" 
