@@ -82,7 +82,7 @@ router.put('/todo/:id', function(req, res, next) {
 // Delete Single Todo
 router.delete('/todo/:id', function(req, res, next) {
 
-  db.todos.update({
+  db.todos.remove({
     _id: mongojs.ObjectId(req.params.id)
   }, '', function(err, result) {
     if (err) {
