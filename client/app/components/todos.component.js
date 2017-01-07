@@ -27,11 +27,41 @@ var TodosComponent = (function () {
             text: todoText.value,
             isCompleted: false
         };
-        result = this._todoService.saveTodo(newTodo);
-        result.subscribe(function (x) {
+        this._todoService.saveTodo(newTodo)
+            .subscribe(function (x) {
             _this.todos.push(newTodo);
             todoText.value = '';
         });
+    };
+    TodosComponent.prototype.setEditState = function (todo, state) {
+        if (state) {
+            todo.isEditMode = state;
+        }
+        else {
+            delete todo.isEditMode;
+        }
+    };
+    TodosComponent.prototype.updateStatus = function (todo) {
+        var _todo = {
+            _id: todo._id,
+            text: todo.text,
+            isCompleted: !todo.isCompleted
+        };
+        this._todoService.updateTodo(_todo)
+            .subscribe(function (data) { return todo.isCompleted = !todo.isCompleted; });
+    };
+    TodosComponent.prototype.updateTodoText = function (event, todo) {
+        var _this = this;
+        if (event.which === 13) {
+            todo.text = event.target.value;
+            var _todo = {
+                _id: todo._id,
+                text: todo.text,
+                isCompleted: todo.isCompleted
+            };
+            this._todoService.updateTodo(_todo)
+                .subscribe(function (data) { return _this.setEditState(todo, false); });
+        }
     };
     TodosComponent = __decorate([
         core_1.Component({

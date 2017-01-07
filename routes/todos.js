@@ -63,7 +63,7 @@ router.put('/todo/:id', function(req, res, next) {
     updObj.text = todo.text;
   }
 
-  if (updObj) {
+  if (!updObj) {
     res.status(400).json({"error": "Invalid Data"});
   } else {
     db.todos.update({
